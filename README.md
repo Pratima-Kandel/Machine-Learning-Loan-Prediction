@@ -14,7 +14,7 @@ Built a predictive model to help banks:
 
 ## Methodology
 
-I started with a single nearest neighbor (k=1) baseline model to establish a floor for performance, then moved to grid search optimization, testing k values of 1, 13, and 25 using 10-fold nested cross-validation. k=13 gave the best cross-validated accuracy, striking a balance between overfitting (k=1) and over-smoothing with a larger k.
+I started with a single nearest neighbor (k=1) baseline model to establish a floor for performance, then moved to grid search optimization, testing k values of 1, 13, and 25 using 10-fold nested cross-validation. k=13 gave the best cross-validated accuracy, striking a balance between overfitting (k=1) and over-smoothing with a larger k. ![k-Nearest Neighbors Model Output](01-knn-classification.png)
 
 Cross-validation results at k=13:
 - CV Accuracy: 90.23% ± 0.80%
