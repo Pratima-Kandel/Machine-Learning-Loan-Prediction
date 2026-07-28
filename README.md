@@ -1,12 +1,10 @@
-# 🤖 Personal Loan Acceptance Prediction
+# Personal Loan Acceptance Prediction
 
-Machine learning classification model using **k-Nearest Neighbors (k=13)** achieving **91.05% accuracy** in predicting customer loan acceptance behavior.
+Machine learning classification model using k-Nearest Neighbors (k=13), achieving 91.05% accuracy in predicting customer loan acceptance behavior.
 
-## 📊 Model Architecture
+Banks spend heavily on loan marketing campaigns that target the wrong customers. This project builds a classifier that flags which customers are actually likely to accept a personal loan offer, so campaigns can be targeted instead of broad.
 
-![k-NN Classification](01-knn-classification.png)
-
-## 🎯 Project Overview
+## Project Overview
 
 Built a predictive model to help banks:
 - Identify likely loan acceptors
@@ -14,71 +12,54 @@ Built a predictive model to help banks:
 - Improve campaign targeting
 - Optimize sales strategies
 
-## 🔬 Methodology
+## Methodology
 
-### Step 1: k-NN Classification with k=1 baseline
-- Initial classification model
-- Single nearest neighbor approach
-- Baseline performance evaluation
+I started with a single nearest neighbor (k=1) baseline model to establish a floor for performance, then moved to grid search optimization, testing k values of 1, 13, and 25 using 10-fold nested cross-validation. k=13 gave the best cross-validated accuracy, striking a balance between overfitting (k=1) and over-smoothing with a larger k.
 
-### Step 2: Grid Search Optimization
+Cross-validation results at k=13:
+- CV Accuracy: 90.23% ± 0.80%
+- Precision (acceptor): 46.75%
+- Recall (acceptor): 12.50%
+- Class Precision (non-acceptor): 91.38%
 
-![Grid Search Results](02-grid-search-results.png)
-
-- Tested k values: 1, 13, 25
-- 10-fold nested cross-validation
-- Best k = 13 (max accuracy)
-
-### Step 3: Cross-Validation Results
-
-![CV Results](03-cv-results-90-percent.png)
+I then evaluated the model on a 40% holdout set it hadn't seen during training.
 
 | Metric | Value |
-|--------|-------|
-| **CV Accuracy** | 90.23% ± 0.80% |
-| **Precision** | 46.75% |
-| **Recall** | 12.50% |
-| **Class Precision (Non-acceptor)** | 91.38% |
+|---|---|
+| Accuracy | 91.05% |
+| Precision (acceptor) | 63.83% |
+| Recall (acceptor) | 15.62% |
+| Specificity (non-acceptor) | 99.06% |
 
-### Step 4: Holdout Evaluation (40% test set)
+The model holds up well on unseen data, staying around 91% accuracy. It's excellent at correctly ruling out people who won't accept a loan, but it only catches a small share of the people who would. That's a direct result of class imbalance in the training data. Far more people decline than accept, so the model naturally leans toward predicting no.
 
-![Final Results](04-holdout-91-percent.png)
+## Key Findings
 
-| Metric | Value |
-|--------|-------|
-| **Accuracy** | **91.05%** ⭐ |
-| **Precision (acceptor)** | 63.83% |
-| **Recall (acceptor)** | 15.62% |
-| **Specificity (non-acceptor)** | 99.06% |
+- Model achieves 91% accuracy on unseen data
+- Excellent at identifying non-acceptors, with 99.06% specificity
+- Class imbalance limits recall for actual acceptors
+- Strong baseline for loan targeting strategies, though not yet optimized for catching every likely acceptor
 
-## 🔍 Key Findings
+## What I Would Do Differently
 
-- Model achieves **91% accuracy** on unseen data
-- **Excellent** at identifying non-acceptors (99.06% specificity)
-- Class imbalance affects recall for acceptors
-- Strong baseline for loan targeting strategies
+Given more time, I would apply SMOTE or another resampling approach to address the class imbalance directly, rather than relying on grid search alone. Recall on the acceptor class is the real weak point here, and it's the metric that matters most to a bank trying not to miss real prospects.
 
-## 🛠️ Tools & Technologies
+## Tools and Technologies
 
-- **RapidMiner Studio** — ML platform
-- **k-Nearest Neighbors (k-NN)** — Classification algorithm
-- **Grid Search** — Hyperparameter optimization
-- **10-Fold Cross-Validation** — Model validation
-- **Confusion Matrix** — Performance evaluation
+RapidMiner Studio, k-Nearest Neighbors, Grid Search, 10-Fold Cross-Validation, Confusion Matrix Analysis
 
-## 💡 Business Recommendations
+## Business Recommendations
 
-1. **Deploy model** for initial loan screening
-2. **Address class imbalance** with SMOTE or threshold tuning
-3. **Combine with rule-based filters** for higher recall
-4. **Re-train quarterly** with new customer data
+1. Deploy the model as an initial screening layer, not a final decision
+2. Address class imbalance with SMOTE or threshold tuning to improve recall
+3. Pair with rule-based filters to catch acceptors the model misses
+4. Retrain quarterly as new customer data comes in
 
-## 👩‍💻 Author
+## Author
 
-**Pratima Kandel**  
-🎓 Business Analytics Graduate Student | Webster University  
-📍 St. Louis, MO
+Pratima Kandel
+MS in Business Analytics, Webster University
+St. Louis, MO
+Open to Business Analyst & Data Analyst roles
 
----
-
-⭐ *If you found this project helpful, please give it a star!*
+If you found this project helpful, feel free to star the repo.
