@@ -58,8 +58,11 @@ RapidMiner Studio, k-Nearest Neighbors, Grid Search, 10-Fold Cross-Validation, C
 ## Author
 
 Pratima Kandel
+
 MS in Business Analytics, Webster University
+
 St. Louis, MO
+
 Open to Business Analyst & Data Analyst roles
 
 If you found this project helpful, feel free to star the repo.
